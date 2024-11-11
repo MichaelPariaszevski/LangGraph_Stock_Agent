@@ -6,15 +6,16 @@ from plotly.offline import iplot
 
 
 class StockPlotter:
-    def __init__(self, ticker, start_date, end_date):
+    def __init__(self, ticker, start_date, end_date, interval):
         self.ticker = ticker
         self.start_date = start_date
         self.end_date = end_date
+        self.interval = interval
         self.data = None
 
     def get_data(self):
         # Retrieve stock data from Yahoo Finance
-        data = yf.download(tickers = self.ticker, start = self.start_date, end = self.end_date)
+        data = yf.download(tickers = self.ticker, start = self.start_date, end = self.end_date, interval = self.interval)
         data = data.reset_index() 
         for i in ["Open", "High", "Close", "Low"]: 
             data[i] = data[i].astype("float64")
@@ -152,10 +153,10 @@ class StockPlotter:
         
         fig_2.show()
         
-start_date = '2022-01-01'
-end_date = '2022-12-30'        
+start_date = '2024-11-01'
+end_date = '2024-11-08'        
 
-example = StockPlotter(ticker = 'AAPL', start_date = start_date, end_date = end_date) 
+example = StockPlotter(ticker = 'AAPL', start_date = start_date, end_date = end_date, interval = "15m") 
 
 example.get_data() 
 example.calculate_technical_indicators() 
