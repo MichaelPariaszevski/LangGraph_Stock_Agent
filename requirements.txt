@@ -1,4 +1,9 @@
 selenium 
 python-dotenv 
 alpha-vantage
+pandas 
+yfinance 
+kaleido 
+plotly
+pandas_market_calendars
 ipywidgets
